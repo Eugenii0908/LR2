@@ -1,13 +1,13 @@
 from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 import json
 
 
 class Student(BaseModel):
-    name: str
-    group: str
-    age: int
-    average_score: int | None = None
+    name: str = Field(..., min_length=1, description="Имя студента")
+    group: str = Field(..., min_length=1, description="Номер группы")
+    age: int = Field(..., ge=0, description="Возраст")
+    average_score: float | None = Field(None, ge=0, le=5, description="Средний балл")
 
 class StudentOut(Student):
     id: int

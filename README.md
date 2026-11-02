@@ -15,10 +15,10 @@
 
 ## Запуск в Docker
 
-В контейнере сервер слушает 80 порт.
+В контейнере сервер слушает 8000 порт.
 
 docker build -t students-api .
-docker run -d -p 8000:80 --name students-app students-api
+docker run -d -p 8000:8000 --name students-app students-api
 
 Документация в Docker будет доступна на: http://localhost:8000/docs
 
@@ -28,10 +28,8 @@ docker run -d -p 8000:80 --name students-app students-api
 |---|---|---|---|
 | POST | /students | JSON в теле | Создать студента. Возвращает созданный объект (без id). |
 | GET | /students | — | Получить всех студентов (с id). |
-| GET | /student | ?student_id=1 | Получить одного студента по id. |
-| DELETE | /students | ?student_id=1 | Удалить студента. Возвращает обновлённый список. |
-
-Обратите внимание: поиск и удаление используют query-параметры (?student_id=...), а не пути /students/{id}.
+| GET | /student | student_id=1 | Получить одного студента по id. |
+| DELETE | /students | student_id=1 | Удалить студента. Возвращает обновлённый список. |
 
 ## Валидация (Pydantic)
 
